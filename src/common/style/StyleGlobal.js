@@ -133,7 +133,7 @@ strong {
 }
 a {
   text-decoration: none;
-  color: black;
+  color: white;
 }
 body{
     background-color: #8C11BE;

@@ -1,6 +1,9 @@
 import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+
 import Buttons from "../../common/components/Buttons";
 import Inputs from "../../common/components/Inputs";
+import { userLogin } from "../../common/services/myWalletServices";
 import Login from "./style";
 
 export default function PageLogin() {
@@ -9,9 +12,18 @@ export default function PageLogin() {
     { field: "password", text: "Senha" },
   ];
   const [data, setData] = useState({});
+  const navigate = useNavigate();
 
-  function login(event) {
+  async function login(event) {
     event.preventDefault();
+
+    try {
+      await userLogin(data);
+
+      navigate("/registros");
+    } catch (err) {
+      console.log(err);
+    }
   }
 
   return (
@@ -21,7 +33,9 @@ export default function PageLogin() {
         <Inputs inputs={inputs} data={data} setData={setData} />
         <Buttons buttonName={"Entrar"} />
       </form>
-      <p>Primeira vez? Cadastre-se!</p>
+      <Link to="/cadastro">
+        <p>Primeira vez? Cadastre-se!</p>
+      </Link>
     </Login>
   );
 }
