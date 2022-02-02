@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import Buttons from "../../common/components/Buttons";
 import Inputs from "../../common/components/Inputs";
 import { userLogin } from "../../common/services/myWalletServices";
-import Login from "./style";
+import PageInitContainer from "../../common/style/PageInitContainer";
 
 export default function PageLogin() {
   const inputs = [
@@ -27,7 +27,7 @@ export default function PageLogin() {
   }
 
   return (
-    <Login>
+    <PageInitContainer>
       <h1>MyWallet</h1>
       <form onSubmit={login}>
         <Inputs inputs={inputs} data={data} setData={setData} />
@@ -36,6 +36,6 @@ export default function PageLogin() {
       <Link to="/cadastro">
         <p>Primeira vez? Cadastre-se!</p>
       </Link>
-    </Login>
+    </PageInitContainer>
   );
 }

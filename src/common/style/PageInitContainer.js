@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const Login = styled.div`
+const PageInitContainer = styled.div`
   min-height: 100vh;
   padding: 0 1.5rem;
 
@@ -61,4 +61,4 @@ const Login = styled.div`
   }
 `;
 
-export default Login;
+export default PageInitContainer;
