@@ -22,24 +22,36 @@ export default function Registry() {
       type: "input",
     },
     { date: "15/11", newRegistry: "Salário", money: "39,90", type: "input" },
+    { date: "15/11", newRegistry: "Salário", money: "39,90", type: "input" },
+    { date: "15/11", newRegistry: "Salário", money: "39,90", type: "input" },
+    { date: "15/11", newRegistry: "Salário", money: "39,90", type: "input" },
+    { date: "15/11", newRegistry: "Salário", money: "39,90", type: "input" },
+    { date: "15/11", newRegistry: "Salário", money: "39,90", type: "input" },
+    { date: "15/11", newRegistry: "Salário", money: "39,90", type: "input" },
+    { date: "15/11", newRegistry: "Salário", money: "39,90", type: "input" },
+    { date: "15/11", newRegistry: "Salário", money: "39,90", type: "input" },
+    { date: "15/11", newRegistry: "Salário", money: "39,90", type: "input" },
+    { date: "15/11", newRegistry: "Salário", money: "39,90", type: "input" },
   ];
 
   return (
     <BoxRegistry>
       {registers.length ? (
-        <div>
-          {registers.map((register) => (
-            <Aregistration>
-              <p className="date">{register.date}</p>
-              <p className="name">{register.newRegistry}</p>
-              <p className="money">{register.money}</p>
-            </Aregistration>
-          ))}
+        <>
+          <div className="listRegistry">
+            {registers.map((register) => (
+              <Aregistration>
+                <p className="date">{register.date}</p>
+                <p className="name">{register.newRegistry}</p>
+                <p className="money">{register.money}</p>
+              </Aregistration>
+            ))}
+          </div>
           <Result>
             <p>SALDO</p>
             <span className="money">2849,96</span>
           </Result>
-        </div>
+        </>
       ) : (
         <span>
           Não há registros de

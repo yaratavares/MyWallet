@@ -28,7 +28,7 @@ const Aregistration = styled.div`
   margin-bottom: 1rem;
 
   display: grid;
-  grid-template-columns: 1fr 3fr 1fr;
+  grid-template-columns: 1fr 2fr 1fr;
 
   .date {
     align-self: center;
@@ -49,7 +49,7 @@ const Aregistration = styled.div`
 
 const BoxRegistry = styled.div`
   width: 100%;
-  min-height: 27.875rem;
+  height: calc(100vh - 221px);
   background-color: white;
   margin-bottom: 0.8125rem;
   padding: 1.44rem 0.75rem 3rem 0.75rem;
@@ -68,6 +68,10 @@ const BoxRegistry = styled.div`
 
     justify-self: center;
     align-self: center;
+  }
+
+  .listRegistry {
+    overflow-y: auto;
   }
 `;
 
