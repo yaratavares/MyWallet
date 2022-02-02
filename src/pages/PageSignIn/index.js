@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
-import Buttons from "../../common/components/Buttons";
-import Inputs from "../../common/components/Inputs";
+import Buttons from "../../components/Buttons";
+import Inputs from "../../components/Inputs";
 import PageInitContainer from "../../common/style/PageInitContainer";
 
 export default function PageSignIn() {
@@ -13,11 +13,22 @@ export default function PageSignIn() {
     { field: "password", text: "Confirme a senha" },
   ];
   const [data, setData] = useState({});
+  const navigate = useNavigate();
+
+  async function signin(event) {
+    event.preventDefault();
+
+    try {
+      navigate("/registros");
+    } catch (err) {
+      console.log("Houve erro na sua requisição");
+    }
+  }
 
   return (
     <PageInitContainer>
       <h1>MyWallet</h1>
-      <form>
+      <form onSubmit={signin}>
         <Inputs inputs={inputs} data={data} setData={setData} />
         <Buttons buttonName={"Cadastrar"} />
       </form>

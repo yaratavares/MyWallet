@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
-import Buttons from "../../common/components/Buttons";
-import Inputs from "../../common/components/Inputs";
+import Buttons from "../../components/Buttons";
+import Inputs from "../../components/Inputs";
 import { userLogin } from "../../common/services/myWalletServices";
 import PageInitContainer from "../../common/style/PageInitContainer";
 
@@ -18,8 +18,6 @@ export default function PageLogin() {
     event.preventDefault();
 
     try {
-      await userLogin(data);
-
       navigate("/registros");
     } catch (err) {
       console.log("Houve erro na sua requisição");
