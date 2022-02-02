@@ -9,7 +9,7 @@ import Login from "./style";
 export default function PageLogin() {
   const inputs = [
     { field: "email", text: "E-mail" },
-    { field: "password", text: "Senha" },
+    { field: "current-password", text: "Senha" },
   ];
   const [data, setData] = useState({});
   const navigate = useNavigate();
@@ -22,7 +22,7 @@ export default function PageLogin() {
 
       navigate("/registros");
     } catch (err) {
-      console.log(err);
+      console.log("Houve erro na sua requisição");
     }
   }
 
