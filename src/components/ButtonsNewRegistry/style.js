@@ -1,19 +1,5 @@
 import styled from "styled-components";
 
-const ContainerRegistry = styled.div`
-  height: 100vh;
-  padding: 1.5rem 1.5rem;
-`;
-
-const HeaderUser = styled.header`
-  font-size: 1.625rem;
-  margin-bottom: 1.375rem;
-
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-`;
-
 const BoxNewRegistry = styled.div`
   border-radius: 5px;
 
@@ -37,4 +23,4 @@ const BoxNewRegistry = styled.div`
   }
 `;
 
-export { ContainerRegistry, HeaderUser, BoxNewRegistry };
+export { BoxNewRegistry };

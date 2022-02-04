@@ -12,6 +12,7 @@ export default function Inputs({ inputs, data, setData }) {
           onChange={(e) => keyboardAnswer(e.target)}
           placeholder={input.text}
           className="fontForms"
+          autoComplete="on"
           required
         />
       ))}

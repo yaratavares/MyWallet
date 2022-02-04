@@ -1,38 +1,19 @@
-import { BoxNewRegistry, ContainerRegistry, HeaderUser } from "./style";
-import { IoExitOutline } from "react-icons/io5";
-import { BsDashCircle, BsPlusCircle } from "react-icons/bs";
 import Registry from "../../components/Registry";
+import ButtonsNewRegistry from "../../components/ButtonsNewRegistry";
+
+import { IoExitOutline } from "react-icons/io5";
+import PageRegistryContainer from "../../common/style/PageRegistryContainer";
+import TitleNames from "../../common/style/TitleNames";
 
 export default function PageRegistry() {
   return (
-    <ContainerRegistry>
-      <HeaderUser>
+    <PageRegistryContainer>
+      <TitleNames>
         <h2>Olá, Fulano</h2>
         <IoExitOutline />
-      </HeaderUser>
+      </TitleNames>
       <Registry />
-      <BoxNewRegistry>
-        <div>
-          <span>
-            <BsPlusCircle />
-          </span>
-          <p>
-            Nova
-            <br />
-            entrada
-          </p>
-        </div>
-        <div>
-          <span>
-            <BsDashCircle />
-          </span>
-          <p>
-            Nova
-            <br />
-            saída
-          </p>
-        </div>
-      </BoxNewRegistry>
-    </ContainerRegistry>
+      <ButtonsNewRegistry />
+    </PageRegistryContainer>
   );
 }

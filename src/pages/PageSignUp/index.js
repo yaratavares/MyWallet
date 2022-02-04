@@ -5,7 +5,7 @@ import Buttons from "../../components/Buttons";
 import Inputs from "../../components/Inputs";
 import PageInitContainer from "../../common/style/PageInitContainer";
 
-export default function PageSignIn() {
+export default function PageSignUp() {
   const inputs = [
     { field: "name", text: "Nome" },
     { field: "email", text: "E-mail" },
@@ -15,7 +15,7 @@ export default function PageSignIn() {
   const [data, setData] = useState({});
   const navigate = useNavigate();
 
-  async function signin(event) {
+  async function signUp(event) {
     event.preventDefault();
 
     try {
@@ -28,7 +28,7 @@ export default function PageSignIn() {
   return (
     <PageInitContainer>
       <h1>MyWallet</h1>
-      <form onSubmit={signin}>
+      <form onSubmit={signUp}>
         <Inputs inputs={inputs} data={data} setData={setData} />
         <Buttons buttonName={"Cadastrar"} />
       </form>
