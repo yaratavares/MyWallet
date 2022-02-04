@@ -1,6 +1,6 @@
 export default function Inputs({ inputs, data, setData }) {
   function keyboardAnswer(input) {
-    setData({ ...data, [input.type]: input.value });
+    setData({ ...data, [input.name]: input.value });
   }
 
   return (

@@ -1,10 +1,21 @@
+import { useContext, useEffect } from "react";
 import { BsDashCircle, BsPlusCircle } from "react-icons/bs";
+import { useNavigate } from "react-router-dom";
+import { RegistryType } from "../../common/contexts/RegistryType";
 import { BoxNewRegistry } from "./style";
 
 export default function ButtonsNewRegistry() {
+  const { outflowMoney, setOutflowMoney } = useContext(RegistryType);
+  const navigate = useNavigate();
+
+  function clickButton(trueOrFalse) {
+    setOutflowMoney(trueOrFalse);
+    navigate("/registros/novo");
+  }
+
   return (
     <BoxNewRegistry>
-      <div>
+      <div onClick={() => clickButton(true)}>
         <span>
           <BsPlusCircle />
         </span>
@@ -14,7 +25,7 @@ export default function ButtonsNewRegistry() {
           entrada
         </p>
       </div>
-      <div>
+      <div onClick={() => clickButton(false)}>
         <span>
           <BsDashCircle />
         </span>

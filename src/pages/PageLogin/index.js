@@ -10,8 +10,8 @@ import PageInitContainer from "../../common/style/PageInitContainer";
 
 export default function PageLogin() {
   const inputs = [
-    { field: "email", text: "E-mail" },
-    { field: "password", text: "Senha" },
+    { field: "email", name: "email", text: "E-mail" },
+    { field: "password", name: "password", text: "Senha" },
   ];
   const [data, setData] = useState({});
   const [wait, setWait] = useState(false);
