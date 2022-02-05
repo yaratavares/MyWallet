@@ -55,6 +55,11 @@ const PageInitContainer = styled.div`
     }
   }
 
+  .toastModifications {
+    background-color: #a328d6;
+    color: white;
+  }
+
   p {
     font-size: 0.9375;
     margin-top: 2.25rem;

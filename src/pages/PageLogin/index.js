@@ -1,5 +1,6 @@
 import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import toast, { Toaster } from "react-hot-toast";
 
 import { UserToken } from "../../common/contexts/UserToken";
 import { userLogin } from "../../common/services/myWalletServices";
@@ -20,18 +21,29 @@ export default function PageLogin() {
 
   async function login(event) {
     event.preventDefault();
-
     setWait(true);
 
-    try {
-      const token = await userLogin(data);
-      setToken(token);
+    if (!data.email.length || !data.password.length) {
+      toast.error("Preencha todos os campos!");
+    } else {
+      try {
+        const result = await userLogin(data);
 
-      navigate("/registros");
-    } catch (err) {
-      setWait(false);
-      console.log("Houve erro em fazer login, tente Novamente!");
+        setToken(result.data);
+        navigate("/registros");
+      } catch (err) {
+        if (err.message.includes(404)) {
+          toast.error("Dados incorretos!");
+        } else if (err.message.includes(422)) {
+          toast.error("Dados incorretos!");
+        } else if (err.message.includes(500)) {
+          toast.error("Houve um erro com o servidor");
+        } else {
+          toast.error("Erro desconhecido! Atualize a página.");
+        }
+      }
     }
+    setWait(false);
   }
 
   return (
@@ -44,6 +56,7 @@ export default function PageLogin() {
       <Link to="/cadastro">
         <p>Primeira vez? Cadastre-se!</p>
       </Link>
+      <Toaster toastOptions={{ className: "toastModifications" }} />
     </PageInitContainer>
   );
 }

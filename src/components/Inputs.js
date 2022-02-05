@@ -1,6 +1,6 @@
 export default function Inputs({ inputs, data, setData }) {
-  function keyboardAnswer(input) {
-    setData({ ...data, [input.name]: input.value });
+  function keyboardAnswer(keyboard, input) {
+    setData({ ...data, [input.name]: keyboard.value });
   }
 
   return (
@@ -9,7 +9,7 @@ export default function Inputs({ inputs, data, setData }) {
         <input
           key={index}
           type={input.field}
-          onChange={(e) => keyboardAnswer(e.target)}
+          onChange={(e) => keyboardAnswer(e.target, input)}
           placeholder={input.text}
           className="fontForms"
           autoComplete="on"
