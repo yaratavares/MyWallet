@@ -3,7 +3,6 @@ import axios from "axios";
 const BASE_URL = "http://localhost:5000";
 
 function userLogin(data) {
-  console.log(data);
   const response = axios.post(`${BASE_URL}/auth/login`, data);
 
   return response;
@@ -15,14 +14,26 @@ function userRegistration(data) {
     password: data.password,
     email: data.email,
   });
+  return response;
+}
+
+function getRegistry(token) {
+  const response = axios.get(`${BASE_URL}/registers`, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+
+  return response;
+}
+
+function postNewRegistry(data, type, token) {
+  const request = { ...data, ...type };
+  delete request.name;
+  console.log(request);
+  const response = axios.post(`${BASE_URL}/registers`, request, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
   console.log(response);
   return response;
 }
 
-function postNewRegistry(data) {
-  const response = { data: { ...data } };
-  // const response = axios.post(`${BASE_URL}/auth/sign-up`, data, header);
-  return response.data;
-}
-
-export { userLogin, userRegistration, postNewRegistry };
+export { userLogin, userRegistration, postNewRegistry, getRegistry };

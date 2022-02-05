@@ -1,9 +1,9 @@
 import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import toast, { Toaster } from "react-hot-toast";
+import { Toaster } from "react-hot-toast";
 
 import { UserToken } from "../../common/contexts/UserToken";
-import { userLogin } from "../../common/services/myWalletServices";
+import valideLogin from "../../common/validation/valideLogin";
 
 import Buttons from "../../components/Buttons";
 import Inputs from "../../components/Inputs";
@@ -23,33 +23,15 @@ export default function PageLogin() {
     event.preventDefault();
     setWait(true);
 
-    if (!data.email.length || !data.password.length) {
-      toast.error("Preencha todos os campos!");
-    } else {
-      try {
-        const result = await userLogin(data);
+    await valideLogin(data, setToken, navigate);
 
-        setToken(result.data);
-        navigate("/registros");
-      } catch (err) {
-        if (err.message.includes(404)) {
-          toast.error("Dados incorretos!");
-        } else if (err.message.includes(422)) {
-          toast.error("Dados incorretos!");
-        } else if (err.message.includes(500)) {
-          toast.error("Houve um erro com o servidor");
-        } else {
-          toast.error("Erro desconhecido! Atualize a página.");
-        }
-      }
-    }
     setWait(false);
   }
 
   return (
     <PageInitContainer>
       <h1>MyWallet</h1>
-      <form onSubmit={login}>
+      <form onSubmit={login} noValidate>
         <Inputs inputs={inputs} data={data} setData={setData} />
         <Buttons buttonName={"Entrar"} showLoader={wait} />
       </form>

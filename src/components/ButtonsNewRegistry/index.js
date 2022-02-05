@@ -1,11 +1,11 @@
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import { BsDashCircle, BsPlusCircle } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
 import { RegistryType } from "../../common/contexts/RegistryType";
 import { BoxNewRegistry } from "./style";
 
 export default function ButtonsNewRegistry() {
-  const { outflowMoney, setOutflowMoney } = useContext(RegistryType);
+  const { setOutflowMoney } = useContext(RegistryType);
   const navigate = useNavigate();
 
   function clickButton(trueOrFalse) {

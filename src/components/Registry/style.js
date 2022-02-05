@@ -12,7 +12,7 @@ const Result = styled.div`
   }
 
   .money {
-    color: #03ac00;
+    color: ${({ color }) => (color < 0 ? "#C70000" : "#03ac00")};
     font-size: 1.0625rem;
 
     position: absolute;
@@ -41,9 +41,9 @@ const Aregistration = styled.div`
   }
 
   .money {
+    color: ${({ color }) => (color === "outflow" ? "#c70000" : "#03AC00")};
     align-self: center;
     text-align: right;
-    color: #c70000;
   }
 `;
 

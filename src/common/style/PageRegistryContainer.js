@@ -50,6 +50,10 @@ const PageRegistryContainer = styled.div`
       font-weight: 700;
     }
   }
+  .toastModifications {
+    background-color: #a328d6;
+    color: white;
+  }
 `;
 
 export default PageRegistryContainer;
