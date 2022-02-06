@@ -1,14 +1,18 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 import { getRegistry } from "../../common/services/myWalletServices";
 import { Aregistration, BoxRegistry, Result } from "./style";
 
 export default function Registry(token) {
+  const navigate = useNavigate();
   const [registers, setRegisters] = useState([]);
   const [sum, setSum] = useState(0);
 
   useEffect(() => {
-    if (registers.length === 0) {
+    if (!token.token) {
+      navigate("/", { state: "redirected" });
+    } else if (registers.length === 0) {
       const promise = getRegistry(token.token);
       promise.then((response) => {
         setRegisters(response.data);

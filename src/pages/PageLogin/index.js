@@ -1,6 +1,6 @@
-import { useContext, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { Toaster } from "react-hot-toast";
+import { useContext, useEffect, useState } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import toast, { Toaster } from "react-hot-toast";
 
 import { UserToken } from "../../common/contexts/UserToken";
 import valideLogin from "../../common/validation/valideLogin";
@@ -16,14 +16,23 @@ export default function PageLogin() {
   ];
   const [data, setData] = useState({});
   const [wait, setWait] = useState(false);
-  const { setToken } = useContext(UserToken);
+  const { setAndPersistToken } = useContext(UserToken);
   const navigate = useNavigate();
+  const { state } = useLocation({});
+
+  useEffect(() => {
+    if (state === "redirected") {
+      toast.error("Faça login primeiro!");
+      navigate("/", { state: null });
+    }
+    //eslint-disable-next-line
+  }, []);
 
   async function login(event) {
     event.preventDefault();
     setWait(true);
 
-    await valideLogin(data, setToken, navigate);
+    await valideLogin(data, setAndPersistToken, navigate);
 
     setWait(false);
   }

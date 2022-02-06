@@ -1,7 +1,7 @@
 import { userLogin } from "../services/myWalletServices";
 import toast from "react-hot-toast";
 
-export default async function valideLogin(data, setToken, navigate) {
+export default async function valideLogin(data, setAndPersistToken, navigate) {
   if (!data.email || !data.password) {
     toast.error("Preencha todos os campos!");
   } else if (!data.email.includes("@")) {
@@ -10,7 +10,7 @@ export default async function valideLogin(data, setToken, navigate) {
     try {
       const result = await userLogin(data);
 
-      setToken(result.data);
+      setAndPersistToken(result.data);
       navigate("/registros");
     } catch (err) {
       if (err.message.includes(404)) {

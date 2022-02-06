@@ -27,6 +27,9 @@ export default function PageNewRegistry() {
   const { outflowMoney } = useContext(RegistryType);
 
   useEffect(() => {
+    if (!token.name || outflowMoney === null) {
+      navigate("/", { state: "redirected" });
+    }
     if (outflowMoney) {
       setType({ ...type, type: "income", name: "entrada" });
     } else {
@@ -34,7 +37,7 @@ export default function PageNewRegistry() {
     }
 
     // eslint-disable-next-line
-  }, [outflowMoney]);
+  }, []);
 
   async function submitRegistry(event) {
     event.preventDefault();
