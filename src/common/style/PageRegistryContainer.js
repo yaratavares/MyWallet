@@ -53,10 +53,6 @@ const PageRegistryContainer = styled.div`
   .toastModifications {
     background-color: #a328d6;
     color: white;
-
-    :hover {
-      cursor: pointer;
-    }
   }
 
   .iconTheme {

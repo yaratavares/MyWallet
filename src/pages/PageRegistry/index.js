@@ -1,6 +1,7 @@
 import { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { IoExitOutline } from "react-icons/io5";
+import { Toaster } from "react-hot-toast";
 
 import Registry from "../../components/Registry";
 import ButtonsNewRegistry from "../../components/ButtonsNewRegistry";
@@ -35,6 +36,7 @@ export default function PageRegistry() {
       </TitleNames>
       <Registry token={token.token} />
       <ButtonsNewRegistry />
+      <Toaster toastOptions={{ className: "toastModifications" }} />
     </PageRegistryContainer>
   );
 }

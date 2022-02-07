@@ -28,7 +28,7 @@ const Aregistration = styled.div`
   margin-bottom: 1rem;
 
   display: grid;
-  grid-template-columns: 1fr 3fr 1fr;
+  grid-template-columns: 1fr 3fr 1fr 0.5fr;
 
   .date {
     align-self: center;
@@ -44,6 +44,16 @@ const Aregistration = styled.div`
     color: ${({ color }) => (color === "outflow" ? "#c70000" : "#03AC00")};
     align-self: center;
     text-align: right;
+  }
+
+  .delete {
+    text-align: center;
+    align-self: center;
+    color: #c6c6c6;
+
+    :hover {
+      cursor: pointer;
+    }
   }
 `;
 

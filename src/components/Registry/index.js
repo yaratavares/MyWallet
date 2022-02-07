@@ -1,21 +1,27 @@
 import { useEffect, useState } from "react";
+import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 
-import { getRegistry } from "../../common/services/myWalletServices";
+import {
+  deleteRegistry,
+  getRegistry,
+} from "../../common/services/myWalletServices";
 import { Aregistration, BoxRegistry, Result } from "./style";
 
 export default function Registry(token) {
   const navigate = useNavigate();
   const [registers, setRegisters] = useState([]);
+  const [updatePage, setupdatePage] = useState(false);
   const [sum, setSum] = useState(0);
 
   useEffect(() => {
     if (!token.token) {
       navigate("/", { state: "redirected" });
-    } else if (registers.length === 0) {
+    } else if (registers.length === 0 || updatePage === "update") {
       const promise = getRegistry(token.token);
       promise.then((response) => {
         setRegisters(response.data);
+        setupdatePage(false);
       });
     } else {
       let addMoney = 0;
@@ -28,7 +34,21 @@ export default function Registry(token) {
     }
 
     // eslint-disable-next-line
-  }, [registers]);
+  }, [registers, updatePage]);
+
+  async function confirmDelete(id) {
+    const confirm = window.confirm("Apagar registro?");
+    if (confirm) {
+      try {
+        await deleteRegistry(id, token.token);
+        setupdatePage("update");
+
+        toast.success("Registro apagado!");
+      } catch (err) {
+        toast.error("Erro desconhecido! Atualize a página");
+      }
+    }
+  }
 
   return (
     <BoxRegistry>
@@ -41,6 +61,12 @@ export default function Registry(token) {
                 <p className="name">{register.description}</p>
                 <p className="money">
                   {Number(register.money).toFixed(2).replace(".", ",")}
+                </p>
+                <p
+                  className="delete"
+                  onClick={() => confirmDelete(register._id)}
+                >
+                  x
                 </p>
               </Aregistration>
             ))}

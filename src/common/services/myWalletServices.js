@@ -34,4 +34,17 @@ function postNewRegistry(data, type, token) {
   return response;
 }
 
-export { userLogin, userRegistration, postNewRegistry, getRegistry };
+function deleteRegistry(id, token) {
+  const response = axios.delete(`${BASE_URL}/registers/${id}`, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+  return response;
+}
+
+export {
+  userLogin,
+  userRegistration,
+  postNewRegistry,
+  getRegistry,
+  deleteRegistry,
+};
