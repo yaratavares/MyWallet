@@ -27,10 +27,11 @@ export default function PageNewRegistry() {
   const { outflowMoney } = useContext(RegistryType);
 
   useEffect(() => {
-    if (!token.name || outflowMoney === null) {
+    if (!token.name) {
       navigate("/", { state: "redirected" });
-    }
-    if (outflowMoney) {
+    } else if (outflowMoney === null) {
+      navigate("/registros");
+    } else if (outflowMoney) {
       setType({ ...type, type: "income", name: "entrada" });
     } else {
       setType({ ...type, type: "outflow", name: "saída" });
@@ -44,16 +45,27 @@ export default function PageNewRegistry() {
 
     setWait(true);
 
-    await valideRegistry(data, type, token.token);
+    const redirect = await valideRegistry(data, type, token.token);
 
-    setWait(false);
+    if (redirect) {
+      setTimeout(() => {
+        if (redirect) {
+          navigate("/registros");
+        }
+      }, 1000);
+    } else {
+      setWait(false);
+    }
   }
 
   return (
     <PageRegistryContainer>
       <TitleNames>
         <h2>{`Nova ${type.name}`}</h2>
-        <BsArrowLeft onClick={() => navigate("/registros")} />
+        <BsArrowLeft
+          className="iconTheme"
+          onClick={() => navigate("/registros")}
+        />
       </TitleNames>
       <form onSubmit={submitRegistry} noValidate>
         <Inputs inputs={inputs} data={data} setData={setData} />

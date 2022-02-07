@@ -24,6 +24,8 @@ export default function PageLogin() {
     if (state === "redirected") {
       toast.error("Faça login primeiro!");
       navigate("/", { state: null });
+    } else if (localStorage.getItem("token")) {
+      navigate("/registros");
     }
     //eslint-disable-next-line
   }, []);

@@ -149,6 +149,12 @@ body{
     .fontForms {
     font-family: "Raleway", sans-serif;
   }
+
+  button {
+    :hover {
+      cursor: pointer;
+    }
+  }
 }
 
 `;

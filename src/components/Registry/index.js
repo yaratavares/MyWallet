@@ -21,8 +21,8 @@ export default function Registry(token) {
       let addMoney = 0;
       registers.map((register) =>
         register.type === "income"
-          ? (addMoney += parseInt(register.money))
-          : (addMoney -= parseInt(register.money))
+          ? (addMoney += Number(register.money))
+          : (addMoney -= Number(register.money))
       );
       setSum(addMoney);
     }
@@ -39,13 +39,17 @@ export default function Registry(token) {
               <Aregistration key={index} color={register.type}>
                 <p className="date">{register.date}</p>
                 <p className="name">{register.description}</p>
-                <p className="money">{register.money}</p>
+                <p className="money">
+                  {Number(register.money).toFixed(2).replace(".", ",")}
+                </p>
               </Aregistration>
             ))}
           </div>
           <Result color={sum}>
             <p>SALDO</p>
-            <span className="money">{Math.abs(sum)}</span>
+            <span className="money">
+              {Number(Math.abs(sum)).toFixed(2).replace(".", ",")}
+            </span>
           </Result>
         </>
       ) : (

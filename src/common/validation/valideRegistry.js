@@ -6,9 +6,14 @@ export default async function valideRegistry(data, type, token) {
     toast.error("Preencha todos os campos!");
   } else {
     try {
-      const response = await postNewRegistry(data, type, token);
-      console.log(response);
+      const moneyValidate = data.money.replace(",", ".");
+      const redirect = await postNewRegistry(
+        { ...data, money: moneyValidate },
+        type,
+        token
+      );
       toast.success("Registro inserido!");
+      return redirect;
     } catch (err) {
       if (err.message.includes(401)) {
         toast.error("Não autorizado, faça login!");

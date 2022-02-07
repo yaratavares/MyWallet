@@ -28,11 +28,9 @@ function getRegistry(token) {
 function postNewRegistry(data, type, token) {
   const request = { ...data, ...type };
   delete request.name;
-  console.log(request);
   const response = axios.post(`${BASE_URL}/registers`, request, {
     headers: { Authorization: `Bearer ${token}` },
   });
-  console.log(response);
   return response;
 }
 

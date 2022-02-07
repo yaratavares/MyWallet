@@ -15,6 +15,8 @@ export default async function valideLogin(data, setAndPersistToken, navigate) {
     } catch (err) {
       if (err.message.includes(404)) {
         toast.error("Dados incorretos!");
+      } else if (err.message.includes(401)) {
+        toast.error("Senha incorreta!");
       } else if (err.message.includes(422)) {
         toast.error("Dados incorretos!");
       } else if (err.message.includes(500)) {

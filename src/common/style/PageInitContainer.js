@@ -60,9 +60,12 @@ const PageInitContainer = styled.div`
     color: white;
   }
 
-  p {
-    font-size: 0.9375;
+  a {
     margin-top: 2.25rem;
+
+    p {
+      font-size: 0.9375;
+    }
   }
 `;
 

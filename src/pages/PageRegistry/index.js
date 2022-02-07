@@ -21,11 +21,17 @@ export default function PageRegistry() {
     // eslint-disable-next-line
   }, []);
 
+  function logout() {
+    localStorage.removeItem("token");
+
+    navigate("/");
+  }
+
   return (
     <PageRegistryContainer>
       <TitleNames>
         <h2>Olá, {token.name}</h2>
-        <IoExitOutline />
+        <IoExitOutline className="iconTheme" onClick={logout} />
       </TitleNames>
       <Registry token={token.token} />
       <ButtonsNewRegistry />

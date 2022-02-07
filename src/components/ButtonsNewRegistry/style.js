@@ -17,6 +17,10 @@ const BoxNewRegistry = styled.div`
     flex-direction: column;
     justify-content: space-between;
 
+    :hover {
+      cursor: pointer;
+    }
+
     span {
       font-size: 1.3785rem;
     }
