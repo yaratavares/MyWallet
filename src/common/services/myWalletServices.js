@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BASE_URL = "http://localhost:5000";
+const BASE_URL = "https://backendmy-wallet.herokuapp.com/";
 
 function userLogin(data) {
   const response = axios.post(`${BASE_URL}/auth/login`, data);
@@ -41,10 +41,18 @@ function deleteRegistry(id, token) {
   return response;
 }
 
+function editRegistry(id, data, token) {
+  const response = axios.put(`${BASE_URL}/registers/${id}`, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+  return response;
+}
+
 export {
   userLogin,
   userRegistration,
   postNewRegistry,
   getRegistry,
   deleteRegistry,
+  editRegistry,
 };
