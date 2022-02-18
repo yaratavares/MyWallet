@@ -7,12 +7,12 @@ import PageRegistry from "./PageRegistry";
 import PageSignUp from "./PageSignUp";
 import PageNewRegistry from "./PageNewRegistry";
 
-import { Container } from "../common/style/StyleGlobal";
+import { StyleGlobal } from "../common/style/StyleGlobal";
 
 export default function App() {
   return (
     <BrowserRouter>
-      <Container />
+      <StyleGlobal />
       <UserLoginProvider>
         <RegistryTypeProvider>
           <Routes>

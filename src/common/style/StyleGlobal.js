@@ -1,6 +1,6 @@
 import { createGlobalStyle } from "styled-components";
 
-export const Container = createGlobalStyle`
+export const StyleGlobal = createGlobalStyle`
 html,
 body,
 div,

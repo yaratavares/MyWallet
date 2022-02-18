@@ -1,51 +1,40 @@
 import axios from "axios";
 
-const BASE_URL = "https://backendmy-wallet.herokuapp.com";
+// const BASE_URL = "https://backendmy-wallet.herokuapp.com";
+const BASE_URL = "http://localhost:5000";
+
+function configToken(token) {
+  return { headers: { Authorization: `Bearer ${token}` } };
+}
 
 function userLogin(data) {
-  const response = axios.post(`${BASE_URL}/auth/login`, data);
-
-  return response;
+  return axios.post(`${BASE_URL}/auth/login`, data);
 }
 
 function userRegistration(data) {
-  const response = axios.post(`${BASE_URL}/auth/signup`, {
+  return axios.post(`${BASE_URL}/auth/signup`, {
     name: data.name,
     password: data.password,
     email: data.email,
   });
-  return response;
 }
 
 function getRegistry(token) {
-  const response = axios.get(`${BASE_URL}/registers`, {
-    headers: { Authorization: `Bearer ${token}` },
-  });
-
-  return response;
+  return axios.get(`${BASE_URL}/registers`, configToken(token));
 }
 
 function postNewRegistry(data, type, token) {
   const request = { ...data, ...type };
   delete request.name;
-  const response = axios.post(`${BASE_URL}/registers`, request, {
-    headers: { Authorization: `Bearer ${token}` },
-  });
-  return response;
+  return axios.post(`${BASE_URL}/registers`, request, configToken(token));
 }
 
 function deleteRegistry(id, token) {
-  const response = axios.delete(`${BASE_URL}/registers/${id}`, {
-    headers: { Authorization: `Bearer ${token}` },
-  });
-  return response;
+  return axios.delete(`${BASE_URL}/registers/${id}`, configToken(token));
 }
 
 function editRegistry(id, data, token) {
-  const response = axios.put(`${BASE_URL}/registers/${id}`, {
-    headers: { Authorization: `Bearer ${token}` },
-  });
-  return response;
+  return axios.put(`${BASE_URL}/registers/${id}`, configToken(token));
 }
 
 export {

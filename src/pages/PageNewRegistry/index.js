@@ -1,7 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Toaster } from "react-hot-toast";
-import dayjs from "dayjs";
 import { BsArrowLeft } from "react-icons/bs";
 
 import valideRegistry from "../../common/validation/valideRegistry";
@@ -19,7 +18,7 @@ export default function PageNewRegistry() {
     { field: "text", name: "description", text: "Descrição" },
   ];
 
-  const [data, setData] = useState({ date: dayjs().format("DD/MM") });
+  const [data, setData] = useState({});
   const [type, setType] = useState({});
   const [wait, setWait] = useState(false);
   const navigate = useNavigate();

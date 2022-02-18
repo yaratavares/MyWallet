@@ -36,9 +36,17 @@ export default function Registry(token) {
     // eslint-disable-next-line
   }, [registers, updatePage]);
 
-  async function confirmDelete(id) {
-    const confirm = window.confirm("Apagar registro?");
-    if (confirm) {
+  function confirmDelete(id) {
+    toast((t) => (
+      <span>
+        Apagar registro?
+        <button onClick={() => realyDelete(t.id)}>Delete</button>
+      </span>
+    ));
+
+    async function realyDelete(toastId) {
+      toast.dismiss(toastId);
+
       try {
         await deleteRegistry(id, token.token);
         setupdatePage("update");

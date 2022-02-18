@@ -53,6 +53,18 @@ const PageRegistryContainer = styled.div`
   .toastModifications {
     background-color: #a328d6;
     color: white;
+
+    button {
+      all: unset;
+      margin-left: 8px;
+      background-color: white;
+      color: black;
+      font-weight: normal;
+      font-size: 13px;
+      padding: 8px;
+      border-radius: 8px;
+      cursor: pointer;
+    }
   }
 
   .iconTheme {
