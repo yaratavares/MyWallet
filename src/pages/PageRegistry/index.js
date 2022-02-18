@@ -1,7 +1,7 @@
 import { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { IoExitOutline } from "react-icons/io5";
-import { Toaster } from "react-hot-toast";
+import toast, { Toaster } from "react-hot-toast";
 
 import Registry from "../../components/Registry";
 import ButtonsNewRegistry from "../../components/ButtonsNewRegistry";
@@ -12,7 +12,6 @@ import TitleNames from "../../common/style/TitleNames";
 
 export default function PageRegistry() {
   const { token } = useContext(UserToken);
-
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -24,6 +23,7 @@ export default function PageRegistry() {
 
   function logout() {
     localStorage.removeItem("token");
+    toast.success("Você saiu!");
 
     navigate("/");
   }

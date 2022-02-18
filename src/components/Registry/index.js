@@ -1,6 +1,7 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import { RegistryContent } from "../../common/contexts/RegistryContent";
 
 import {
   deleteRegistry,
@@ -13,6 +14,7 @@ export default function Registry(token) {
   const [registers, setRegisters] = useState([]);
   const [updatePage, setupdatePage] = useState(false);
   const [sum, setSum] = useState(0);
+  const { setUpdateRegistry } = useContext(RegistryContent);
 
   useEffect(() => {
     if (!token.token) {
@@ -58,6 +60,12 @@ export default function Registry(token) {
     }
   }
 
+  function clickDescription(register) {
+    console.log(register);
+    setUpdateRegistry(register);
+    navigate("/registros/editar");
+  }
+
   return (
     <BoxRegistry>
       {registers.length ? (
@@ -66,7 +74,9 @@ export default function Registry(token) {
             {registers.map((register, index) => (
               <Aregistration key={index} color={register.type}>
                 <p className="date">{register.date}</p>
-                <p className="name">{register.description}</p>
+                <p className="name" onClick={() => clickDescription(register)}>
+                  {register.description}
+                </p>
                 <p className="money">
                   {Number(register.money).toFixed(2).replace(".", ",")}
                 </p>

@@ -38,6 +38,7 @@ const Aregistration = styled.div`
   .name {
     align-self: center;
     color: black;
+    cursor: pointer;
   }
 
   .money {

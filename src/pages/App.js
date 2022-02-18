@@ -6,8 +6,10 @@ import PageLogin from "./PageLogin";
 import PageRegistry from "./PageRegistry";
 import PageSignUp from "./PageSignUp";
 import PageNewRegistry from "./PageNewRegistry";
+import PageEditRegistry from "./PageEditRegistry";
 
 import { StyleGlobal } from "../common/style/StyleGlobal";
+import RegistryContetProvider from "../common/contexts/RegistryContent";
 
 export default function App() {
   return (
@@ -15,12 +17,15 @@ export default function App() {
       <StyleGlobal />
       <UserLoginProvider>
         <RegistryTypeProvider>
-          <Routes>
-            <Route path="/" element={<PageLogin />} />
-            <Route path="/cadastro" element={<PageSignUp />} />
-            <Route path="/registros" element={<PageRegistry />} />
-            <Route path="/registros/novo" element={<PageNewRegistry />} />
-          </Routes>
+          <RegistryContetProvider>
+            <Routes>
+              <Route path="/" element={<PageLogin />} />
+              <Route path="/cadastro" element={<PageSignUp />} />
+              <Route path="/registros" element={<PageRegistry />} />
+              <Route path="/registros/novo" element={<PageNewRegistry />} />
+              <Route path="/registros/editar" element={<PageEditRegistry />} />
+            </Routes>
+          </RegistryContetProvider>
         </RegistryTypeProvider>
       </UserLoginProvider>
     </BrowserRouter>
