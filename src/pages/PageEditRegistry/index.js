@@ -3,39 +3,61 @@ import { useNavigate } from "react-router-dom";
 import { Toaster } from "react-hot-toast";
 import { BsArrowLeft } from "react-icons/bs";
 
-import valideRegistry from "../../common/validation/valideRegistry";
-import { RegistryType } from "../../common/contexts/RegistryType";
 import { UserToken } from "../../common/contexts/UserToken";
+import { RegistryContent } from "../../common/contexts/RegistryContent";
+import valideUpdateRegistry from "../../common/validation/valideUpdateRegistry";
 import PageRegistryContainer from "../../common/style/PageRegistryContainer";
 import TitleNames from "../../common/style/TitleNames";
 
 import Buttons from "../../components/Buttons";
 import Inputs from "../../components/Inputs";
-import { RegistryContent } from "../../common/contexts/RegistryContent";
 
 export default function PageEditRegistry() {
-  const inputs = [
-    { field: "text", name: "money", text: "Valor" },
-    { field: "text", name: "description", text: "Descrição" },
-  ];
-
   const [data, setData] = useState({});
   const [type, setType] = useState({});
   const [wait, setWait] = useState(false);
   const navigate = useNavigate();
   const { token } = useContext(UserToken);
   const { updateRegistry } = useContext(RegistryContent);
+  const inputs = updateRegistry
+    ? [
+        {
+          field: "text",
+          name: "money",
+          text: "Valor",
+          valueDefined: updateRegistry.money,
+        },
+        {
+          field: "text",
+          name: "description",
+          text: "Descrição",
+          valueDefined: updateRegistry.description,
+        },
+      ]
+    : [];
+  console.log(updateRegistry);
 
   useEffect(() => {
     if (!token.name) {
       navigate("/", { state: "redirected" });
-    } else if (updateRegistry === null) {
+      return;
+    }
+
+    if (!updateRegistry || updateRegistry.length === 0) {
       navigate("/registros");
-    } else if (updateRegistry.type === "income") {
+      return;
+    }
+
+    if (updateRegistry.type === "income") {
       setType({ ...type, type: "income", name: "entrada" });
     } else {
       setType({ ...type, type: "outflow", name: "saída" });
     }
+
+    setData({
+      money: updateRegistry.money,
+      description: updateRegistry.description,
+    });
 
     // eslint-disable-next-line
   }, []);
@@ -45,7 +67,11 @@ export default function PageEditRegistry() {
 
     setWait(true);
 
-    const redirect = await valideRegistry(data, type, token.token);
+    const redirect = await valideUpdateRegistry(
+      updateRegistry._id,
+      data,
+      token.token
+    );
 
     if (redirect) {
       setTimeout(() => {
@@ -57,6 +83,7 @@ export default function PageEditRegistry() {
       setWait(false);
     }
   }
+  console.log(data);
 
   return (
     <PageRegistryContainer>

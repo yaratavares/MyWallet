@@ -34,7 +34,7 @@ function deleteRegistry(id, token) {
 }
 
 function editRegistry(id, data, token) {
-  return axios.put(`${BASE_URL}/registers/${id}`, configToken(token));
+  return axios.put(`${BASE_URL}/registers/${id}`, data, configToken(token));
 }
 
 export {
