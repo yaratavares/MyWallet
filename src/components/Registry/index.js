@@ -1,69 +1,37 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
-import { RegistryContent } from "../../common/contexts/RegistryContent";
 
-import {
-  deleteRegistry,
-  getRegistry,
-} from "../../common/services/myWalletServices";
-import { Aregistration, BoxRegistry, Result } from "./style";
+import OneRegistry from "../OneRegistry";
+import { getRegistry } from "../../common/services/myWalletServices";
+import BoxRegistry from "./style";
+import ResultSum from "../ResultSum";
 
 export default function Registry(token) {
   const navigate = useNavigate();
   const [registers, setRegisters] = useState([]);
-  const [updatePage, setupdatePage] = useState(false);
-  const [sum, setSum] = useState(0);
-  const { setUpdateRegistry } = useContext(RegistryContent);
 
   useEffect(() => {
     if (!token.token) {
       navigate("/", { state: "redirected" });
-    } else if (registers.length === 0 || updatePage === "update") {
-      const promise = getRegistry(token.token);
-      promise.then((response) => {
-        setRegisters(response.data);
-        setupdatePage(false);
-      });
-    } else {
-      let addMoney = 0;
-      registers.map((register) =>
-        register.type === "income"
-          ? (addMoney += Number(register.money))
-          : (addMoney -= Number(register.money))
-      );
-      setSum(addMoney);
+      return;
+    }
+
+    if (registers.length === 0) {
+      initRegistry();
+      return;
     }
 
     // eslint-disable-next-line
-  }, [registers, updatePage]);
+  }, [registers]);
 
-  function confirmDelete(id) {
-    toast((t) => (
-      <span>
-        Apagar registro?
-        <button onClick={() => realyDelete(t.id)}>Delete</button>
-      </span>
-    ));
-
-    async function realyDelete(toastId) {
-      toast.dismiss(toastId);
-
-      try {
-        await deleteRegistry(id, token.token);
-        setupdatePage("update");
-
-        toast.success("Registro apagado!");
-      } catch (err) {
-        toast.error("Erro desconhecido! Atualize a página");
-      }
+  async function initRegistry() {
+    try {
+      const response = await getRegistry(token.token);
+      setRegisters(response.data);
+    } catch {
+      toast.error("Erro desconhecido. Atualize a página!");
     }
-  }
-
-  function clickDescription(register) {
-    console.log(register);
-    setUpdateRegistry(register);
-    navigate("/registros/editar");
   }
 
   return (
@@ -71,30 +39,15 @@ export default function Registry(token) {
       {registers.length ? (
         <>
           <div className="listRegistry">
-            {registers.map((register, index) => (
-              <Aregistration key={index} color={register.type}>
-                <p className="date">{register.date}</p>
-                <p className="name" onClick={() => clickDescription(register)}>
-                  {register.description}
-                </p>
-                <p className="money">
-                  {Number(register.money).toFixed(2).replace(".", ",")}
-                </p>
-                <p
-                  className="delete"
-                  onClick={() => confirmDelete(register._id)}
-                >
-                  x
-                </p>
-              </Aregistration>
+            {registers.map((register) => (
+              <OneRegistry
+                key={register._id}
+                register={register}
+                initRegistry={initRegistry}
+              />
             ))}
           </div>
-          <Result color={sum}>
-            <p>SALDO</p>
-            <span className="money">
-              {Number(Math.abs(sum)).toFixed(2).replace(".", ",")}
-            </span>
-          </Result>
+          <ResultSum registers={registers} />
         </>
       ) : (
         <span>
