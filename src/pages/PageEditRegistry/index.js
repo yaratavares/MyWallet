@@ -35,7 +35,6 @@ export default function PageEditRegistry() {
         },
       ]
     : [];
-  console.log(updateRegistry);
 
   useEffect(() => {
     if (!token.name) {
@@ -83,7 +82,6 @@ export default function PageEditRegistry() {
       setWait(false);
     }
   }
-  console.log(data);
 
   return (
     <PageRegistryContainer>

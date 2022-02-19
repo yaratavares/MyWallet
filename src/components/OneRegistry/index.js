@@ -31,7 +31,7 @@ export default function OneRegistry({ register, initRegistry }) {
   }
 
   function clickDescription(register) {
-    toastWithButton("Apagar registro?", "Alterar", realyUpdate);
+    toastWithButton("Editar registro?", "Alterar", realyUpdate);
 
     function realyUpdate(toastId) {
       toast.dismiss(toastId);
