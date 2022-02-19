@@ -2,11 +2,11 @@ import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 
+import toastWithButton from "../ToastWithButton";
 import { UserToken } from "../../common/contexts/UserToken";
 import { RegistryContent } from "../../common/contexts/RegistryContent";
 import { deleteRegistry } from "../../common/services/myWalletServices";
 import Aregistration from "./style";
-import toastWithButton from "../ToastWithButton";
 
 export default function OneRegistry({ register, initRegistry }) {
   const { token } = useContext(UserToken);
