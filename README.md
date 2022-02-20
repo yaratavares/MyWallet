@@ -2,7 +2,7 @@
 
 <p align="center">
 <a href="https://wakatime.com/badge/user/97595b44-027b-4695-a588-53e9c884f7e2/project/227426a7-a295-474b-9487-f670bd102d3a"><img src="https://wakatime.com/badge/user/97595b44-027b-4695-a588-53e9c884f7e2/project/227426a7-a295-474b-9487-f670bd102d3a.svg" alt="wakatime"></a>
-  <img alt="Repository size" src="https://img.shields.io/github/repo-size/yaratavares/APIBate-papoUOL">
+  <img alt="Repository size" src="https://img.shields.io/github/repo-size/yaratavares/MyWallet">
   <a href="https://github.com/yaratavares/MyWallet/commits/main">
     <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/yaratavares/MyWallet">
   </a>
@@ -13,7 +13,7 @@
  <a href="#-funcionalidades">Funcionalidades</a> •
  <a href="#-layout">Layout</a> • 
  <a href="#-como-executar-o-projeto">Como executar</a> • 
- <a href="#-autor">Autor</a> • 
+ <a href="#-autor">Autora</a> • 
  <a href="#user-content--licença">Licença</a>
 </p>
 
@@ -44,8 +44,14 @@ Se trata de meu primeiro projeto Full-Stack, onde desenvolvi o front-end e back-
 
 O layout da aplicação está disponível no Figma:
 
+<p>
 <a href="https://www.figma.com/file/RK74LpJlLzA3mzy1IJ3a9I/MyWallet">
   <img alt="Made by driven education" src="https://img.shields.io/badge/Acessar%20Layout%20-Figma-%2304D361">
+</a>
+</p>
+
+<a href="https://www.figma.com/file/RK74LpJlLzA3mzy1IJ3a9I/MyWallet">
+  <img alt="Made by yaratavares" src="./src/common/assets/mywallet.gif">
 </a>
 
 ---
@@ -54,10 +60,11 @@ O layout da aplicação está disponível no Figma:
 
 Este projeto está dividido em duas partes:
 
-1. [Backend](https://github.com/yaratavares/API-MyWallet/blob/main/package.json) 🎲
+1. [Backend](https://github.com/yaratavares/API-MyWallet) 🎲
 2. Frontend (este repositório)
 
 💡 O front-end não precisa que o back-end esteja rodando para funcionamento da aplicação.
+
 Para ver as funcionalidades basta acessar o último deploy ou clicar no link da [página](https://my-wallet-dom9a99jc-yaratavares.vercel.app/).
 
 ### Pré-requisitos
@@ -108,7 +115,7 @@ As seguintes ferramentas foram usadas na construção do projeto:
 <a src="https://github.com/motdotla/dotenv"><img src="https://img.shields.io/badge/.env-ECD53F?style=for-the-badge"/></a>
 </p>
 
-> Veja o arquivo [package.json](./package.json)
+> Veja o arquivo [package.json](https://github.com/yaratavares/API-MyWallet/blob/main/package.json)
 
 ---
 
